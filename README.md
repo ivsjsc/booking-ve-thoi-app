@@ -1,20 +1,74 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 🚗 Booking Ve Thoi App
 
-# Run and deploy your AI Studio app
+**Safe Ride Booking Application - Ứng dụng đặt xe an toàn**
 
-This contains everything you need to run your app locally.
+A comprehensive ride booking application built with Angular featuring safe transportation services including regular rides and designated driver services.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1vpOcfdXd9IN8IeZikv0q1aFNyjWwpS5T
+## Features
 
-## Run Locally
+- 🗺️ **Interactive Map Integration** - Real-time location tracking with Leaflet maps
+- 🚖 **Multiple Vehicle Types** - Car and motorbike options
+- 👨‍✈️ **Designated Driver Service** - Professional drivers for your vehicle
+- 💳 **Multiple Payment Methods** - Cash, card, and e-wallet support
+- 📱 **Real-time Notifications** - Live updates on ride status
+- 🏆 **Rewards System** - Earn points for rides
+- 📊 **Ride History** - Track all your past rides
+- 👤 **User Profile Management** - Complete profile and settings
 
-**Prerequisites:**  Node.js
+## 🚀 Getting Started
 
+**Prerequisites:** Node.js (v18 or higher)
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ivsjsc/booking-ve-thoi-app.git
+   cd booking-ve-thoi-app
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Angular 20.3.0
+- **Maps:** Leaflet with routing machine
+- **Styling:** Tailwind CSS
+- **Build Tool:** Angular CLI with Vite
+- **Language:** TypeScript
+
+## 📱 App Screens
+
+- **Home:** Main booking interface
+- **Map:** Interactive map with route planning
+- **In-Ride:** Real-time ride tracking
+- **Profile:** User profile management
+- **Settings:** App configuration
+- **Rewards:** Points and loyalty program
+- **History:** Past ride records
+- **Notifications:** Real-time updates
+
+## 🔧 Project Structure
+
+```
+src/
+├── app.component.ts          # Main app component
+├── booking.service.ts        # Booking logic and API
+├── auth.service.ts          # Authentication service
+├── map.component.ts         # Interactive map component
+├── notifications.service.ts # Push notifications
+├── rewards.service.ts       # Rewards and loyalty
+├── driver.service.ts        # Driver-related services
+└── [other components]       # UI components
+```
