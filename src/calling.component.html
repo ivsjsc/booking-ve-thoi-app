@@ -1,0 +1,62 @@
+<div class="absolute inset-0 bg-gray-900 z-[100] flex flex-col items-center justify-between p-8 animate-fade-in">
+  <!-- Top Section for Driver Info or Keypad -->
+  <div class="flex-grow flex flex-col items-center justify-center w-full">
+    @if (!showKeypad()) {
+      <div class="text-center animate-fade-in">
+        <img [src]="driver().photoUrl" alt="Driver Avatar" class="w-32 h-32 rounded-full mb-4 border-4 border-gray-700 mx-auto">
+        <h1 class="text-4xl font-bold text-white">{{ driver().name }}</h1>
+        <p class="text-xl text-gray-400 mt-2">Đang gọi... {{ callDuration() }}</p>
+      </div>
+    } @else {
+      <!-- Keypad appears here -->
+       <div class="w-full max-w-xs animate-fade-in">
+          <div class="grid grid-cols-3 gap-4 text-white">
+              @for (key of ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#']; track key) {
+                  <button class="bg-gray-700/50 rounded-full aspect-square flex items-center justify-center text-3xl font-light hover:bg-gray-600/50 transition-colors">
+                      {{key}}
+                  </button>
+              }
+          </div>
+      </div>
+    }
+  </div>
+
+  <!-- Call Controls -->
+  <div class="w-full max-w-xs flex-shrink-0">
+    <div class="grid grid-cols-3 gap-6 items-center mb-10">
+      <!-- Mute -->
+      <button (click)="toggleMute()" 
+        class="flex flex-col items-center justify-center space-y-2 text-white rounded-full w-20 h-20 transition-colors"
+        [class.bg-gray-600]="!isMuted()"
+        [class.bg-white]="isMuted()"
+        [class.text-gray-800]="isMuted()">
+        <i class="ph-bold text-3xl" [class]="isMuted() ? 'ph-microphone-slash' : 'ph-microphone'"></i>
+        <span class="text-sm font-semibold">{{ isMuted() ? 'Bỏ tắt' : 'Tắt tiếng' }}</span>
+      </button>
+      
+      <!-- Keypad -->
+      <button (click)="toggleKeypad()" 
+        class="flex flex-col items-center justify-center space-y-2 text-white rounded-full w-20 h-20 transition-colors"
+        [class.bg-gray-600]="!showKeypad()"
+        [class.bg-white]="showKeypad()"
+        [class.text-gray-800]="showKeypad()">
+        <i class="ph-bold ph-dial-pad text-3xl"></i>
+        <span class="text-sm font-semibold">Bàn phím</span>
+      </button>
+      
+      <!-- Speaker -->
+      <button (click)="toggleSpeaker()" 
+        class="flex flex-col items-center justify-center space-y-2 text-white rounded-full w-20 h-20 transition-colors"
+        [class.bg-gray-600]="!isSpeakerOn()"
+        [class.bg-white]="isSpeakerOn()"
+        [class.text-gray-800]="isSpeakerOn()">
+        <i class="ph-bold ph-speaker-high text-3xl"></i>
+        <span class="text-sm font-semibold">Loa ngoài</span>
+      </button>
+    </div>
+
+     <button (click)="onHangUp()" class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center shadow-lg hover:bg-red-700 transition-transform active:scale-95 mx-auto">
+        <i class="ph-bold ph-phone-disconnect text-white text-4xl"></i>
+     </button>
+  </div>
+</div>

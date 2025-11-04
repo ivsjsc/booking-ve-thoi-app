@@ -1,0 +1,7 @@
+{
+  "name": "Về Thôi - Xế An Toàn",
+  "description": "An application for booking a safe ride home after a night out. It provides options for a standard ride or a designated driver to drive your own vehicle home, ensuring both you and your vehicle arrive safely.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

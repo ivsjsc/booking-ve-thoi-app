@@ -1,0 +1,76 @@
+<div class="flex flex-col h-full bg-gray-900 animate-fade-in">
+  <!-- Filter Tabs -->
+  <div class="flex-shrink-0 p-3 bg-gray-900 border-b border-gray-800">
+    <div class="flex space-x-2">
+      <button (click)="setFilter('all')"
+        class="px-4 py-2 text-sm font-semibold rounded-full transition-colors"
+        [class.bg-brand-primary]="activeFilter() === 'all'"
+        [class.text-white]="activeFilter() === 'all'"
+        [class.bg-gray-800]="activeFilter() !== 'all'"
+        [class.text-gray-300]="activeFilter() !== 'all'">
+        Tất cả
+      </button>
+      <button (click)="setFilter('trip')"
+        class="px-4 py-2 text-sm font-semibold rounded-full transition-colors"
+        [class.bg-brand-primary]="activeFilter() === 'trip'"
+        [class.text-white]="activeFilter() === 'trip'"
+        [class.bg-gray-800]="activeFilter() !== 'trip'"
+        [class.text-gray-300]="activeFilter() !== 'trip'">
+        Chuyến đi
+      </button>
+      <button (click)="setFilter('payment')"
+        class="px-4 py-2 text-sm font-semibold rounded-full transition-colors"
+        [class.bg-brand-primary]="activeFilter() === 'payment'"
+        [class.text-white]="activeFilter() === 'payment'"
+        [class.bg-gray-800]="activeFilter() !== 'payment'"
+        [class.text-gray-300]="activeFilter() !== 'payment'">
+        Thanh toán
+      </button>
+      <button (click)="setFilter('promo')"
+        class="px-4 py-2 text-sm font-semibold rounded-full transition-colors"
+        [class.bg-brand-primary]="activeFilter() === 'promo'"
+        [class.text-white]="activeFilter() === 'promo'"
+        [class.bg-gray-800]="activeFilter() !== 'promo'"
+        [class.text-gray-300]="activeFilter() !== 'promo'">
+        Khuyến mãi
+      </button>
+    </div>
+  </div>
+
+  <!-- Notifications List -->
+  <div class="flex-grow overflow-y-auto">
+    @if (filteredNotifications().length > 0) {
+      <div class="divide-y divide-gray-800">
+        @for (notification of filteredNotifications(); track notification.id) {
+          <div (click)="onNotificationClick(notification)" class="flex items-start p-4 cursor-pointer hover:bg-gray-800/50" [class.bg-gray-800]="!notification.read">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center mr-4"
+              [class.bg-green-500/20]="notification.type === 'trip'"
+              [class.text-green-400]="notification.type === 'trip'"
+              [class.bg-blue-500/20]="notification.type === 'payment'"
+              [class.text-blue-400]="notification.type === 'payment'"
+              [class.bg-yellow-500/20]="notification.type === 'promo'"
+              [class.text-yellow-400]="notification.type === 'promo'">
+              <i class="ph-bold text-xl" [class]="notification.icon"></i>
+            </div>
+            <div class="flex-grow">
+              <div class="flex justify-between items-center">
+                <h3 class="font-bold text-white">{{ notification.title }}</h3>
+                @if (!notification.read) {
+                  <div class="w-2.5 h-2.5 bg-brand-primary rounded-full ml-2 flex-shrink-0"></div>
+                }
+              </div>
+              <p class="text-gray-400 text-sm mt-1">{{ notification.message }}</p>
+              <p class="text-gray-500 text-xs mt-2">{{ notification.timestamp }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="flex flex-col items-center justify-center h-full text-center text-gray-500 p-8">
+        <i class="ph-bold ph-bell-slash text-6xl mb-4"></i>
+        <p class="font-semibold">Không có thông báo</p>
+        <p class="text-sm">Bạn chưa có thông báo nào trong mục này.</p>
+      </div>
+    }
+  </div>
+</div>

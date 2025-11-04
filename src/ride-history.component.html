@@ -1,0 +1,32 @@
+<div class="flex flex-col h-full bg-gray-900 animate-fade-in overflow-y-auto p-5">
+  <!-- Back button is in the main header -->
+
+  <div class="space-y-4">
+    @for (ride of rides(); track ride.id) {
+      <div class="bg-gray-800 rounded-lg p-4">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <p class="text-sm text-gray-400">{{ ride.date }}</p>
+            <p class="font-bold text-white">{{ ride.serviceType }}</p>
+          </div>
+          <span class="font-bold text-lg text-white">{{ ride.price }}</span>
+        </div>
+        <div class="relative pl-8 border-l-2 border-dotted border-gray-600">
+          <div class="absolute -left-4 top-0 text-brand-primary"><i class="ph-fill ph-circle text-lg"></i></div>
+          <div class="absolute -left-4 bottom-0 text-red-500"><i class="ph-fill ph-map-pin text-lg"></i></div>
+          <div class="mb-2">
+            <p class="text-sm text-gray-300 truncate">{{ ride.pickup }}</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-300 truncate">{{ ride.destination }}</p>
+          </div>
+        </div>
+      </div>
+    } @empty {
+       <div class="text-center py-10">
+        <i class="ph-bold ph-clock-counter-clockwise text-6xl text-gray-600 mb-4"></i>
+        <p class="text-gray-400">Bạn chưa có chuyến đi nào.</p>
+      </div>
+    }
+  </div>
+</div>

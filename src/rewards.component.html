@@ -1,0 +1,21 @@
+<div class="flex flex-col h-full bg-gray-900 animate-fade-in overflow-y-auto p-5">
+  <!-- Back button is in the main header -->
+  
+  <div class="space-y-4">
+    @for (voucher of vouchers(); track voucher.id) {
+      <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-brand-secondary">
+        <h3 class="text-lg font-bold text-white">{{ voucher.title }}</h3>
+        <p class="text-gray-300 mt-1 mb-3">{{ voucher.description }}</p>
+        <div class="flex justify-between items-center text-sm border-t border-gray-700 pt-3">
+          <span class="text-gray-400">HSD: {{ voucher.expiryDate }}</span>
+          <button class="text-brand-primary font-semibold">Chi tiết</button>
+        </div>
+      </div>
+    } @empty {
+      <div class="text-center py-10">
+        <i class="ph-bold ph-gift text-6xl text-gray-600 mb-4"></i>
+        <p class="text-gray-400">Bạn chưa có ưu đãi nào.</p>
+      </div>
+    }
+  </div>
+</div>
