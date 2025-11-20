@@ -72,3 +72,38 @@ src/
 ├── driver.service.ts        # Driver-related services
 └── [other components]       # UI components
 ```
+
+## ⚡ Firebase — Hosting & Analytics
+
+This project uses Firebase for hosting (vethoi.web.app / vethoi.firebaseapp.com) and optional analytics.
+
+Steps to setup and deploy to Firebase:
+
+1. Install the Firebase SDK (we added it to `package.json` as `firebase`) and optionally the CLI:
+
+```pwsh
+npm install
+npm install -g firebase-tools   # optional: for deploy via CLI
+```
+
+2. Initialize Firebase locally (choose the existing project `ivs-159a7` or the `vethoi` hosting site):
+
+```pwsh
+firebase login
+firebase init hosting
+# choose project -> ivs-159a7, set public directory to `dist`, and configure as a single-page app
+```
+
+3. Build and deploy:
+
+```pwsh
+npm run build
+firebase deploy --only hosting
+```
+
+4. The app will be published to:
+
+- https://vethoi.web.app
+- https://vethoi.firebaseapp.com
+
+Note: We added `src/firebase.ts` and `src/environments/firebaseConfig.ts` to initialize the Firebase app at runtime — this uses the modern modular Firebase SDK and safe-guards analytics initialization so it runs only in the browser.

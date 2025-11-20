@@ -4,6 +4,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideZonelessChangeDetection } from '@angular/core';
 
 import { AppComponent } from './src/app.component';
+// Initialize Firebase SDK (analytics is optional and runs in browser)
+import './src/firebase';
 
 bootstrapApplication(AppComponent, {
   providers: [
