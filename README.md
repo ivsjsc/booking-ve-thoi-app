@@ -94,11 +94,25 @@ firebase init hosting
 # choose project -> ivs-159a7, set public directory to `dist`, and configure as a single-page app
 ```
 
-3. Build and deploy:
+3. Build and deploy (recommended: build into `dist`):
 
 ```pwsh
 npm run build
 firebase deploy --only hosting
+
+To deploy specifically to the `vethoi` site (instead of the default site for your project), use:
+
+```pwsh
+firebase deploy --only hosting:vethoi
+```
+
+If `firebase.json` has `public: public`, you can copy `dist` contents into `public` before deploy. Example:
+
+```pwsh
+Remove-Item -Recurse -Force public
+Copy-Item -Path dist -Destination public -Recurse
+firebase deploy --only hosting
+```
 ```
 
 4. The app will be published to:

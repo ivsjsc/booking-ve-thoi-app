@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "vethoi",
     "public": "dist",
     "ignore": [
       "firebase.json",
