@@ -12,6 +12,32 @@ dist
 dist-ssr
 *.local
 
+# Environment and secrets
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+
+# Firebase emulator and local state
+.firebase/
+firebase-debug.*
+
+# Service account & private keys
+serviceAccount*.json
+firebase-adminsdk*.json
+*.key
+*.pem
+*.p12
+
+# Mobile platform files
+google-services.json
+GoogleService-Info.plist
+
+# Secrets folder
+/secrets
+/certs
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -121,3 +121,13 @@ firebase deploy --only hosting
 - https://vethoi.firebaseapp.com
 
 Note: We added `src/firebase.ts` and `src/environments/firebaseConfig.ts` to initialize the Firebase app at runtime — this uses the modern modular Firebase SDK and safe-guards analytics initialization so it runs only in the browser.
+
+## 🔐 Secrets & environment variables
+
+To protect keys/secrets:
+
+- Never commit `.env`, secret JSONs (service account files), or private keys to the repo. Add them to `.gitignore`.
+- We include a `.env.example` in this repository to show which variables are required — copy it to `.env` and fill with real values.
+- Example env variables you should set locally: `FIREBASE_API_KEY`, `GOOGLE_MAPS_API_KEY`, `STRIPE_SECRET_KEY`, and `ADMIN_SERVICE_ACCOUNT_PATH`.
+
+If you want to move firebase config into env vars, update `src/environments/firebaseConfig.ts` to read from env (or `import.meta.env` for Vite) and add your `.env` values to your local environment.
