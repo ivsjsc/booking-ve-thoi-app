@@ -131,3 +131,28 @@ To protect keys/secrets:
 - Example env variables you should set locally: `FIREBASE_API_KEY`, `GOOGLE_MAPS_API_KEY`, `STRIPE_SECRET_KEY`, and `ADMIN_SERVICE_ACCOUNT_PATH`.
 
 If you want to move firebase config into env vars, update `src/environments/firebaseConfig.ts` to read from env (or `import.meta.env` for Vite) and add your `.env` values to your local environment.
+
+### Production-ready Authentication
+
+- Configure Firebase Authentication providers you need (Email/Password, Phone, Google) in Firebase Console -> Authentication -> Sign-in methods.
+- Use email verification and disable sign-ins for users who haven't verified (important for production security).
+- Store admin and service account keys securely in your infrastructure (Cloud Secret Manager, Azure KeyVault, or GitHub Actions secrets). Do not check them into Git.
+- We included a sample Cloud Function at `functions/index.js` — this shows how to set custom claims (roles) for users. Deploy it with `firebase deploy --only functions` and call it securely from a privileged admin account.
+- Add Firestore security rules to restrict access. Example rule: `allow read: if request.auth != null` and role-based rules to only allow admin access for management collections.
+
+### Steps to enable production auth and roles
+
+1. Create service account for admin operations: `firebase login --no-localhost && firebase setup:emulators:auth` or download service account key from Firebase project settings.
+2. Deploy `functions` folder to Cloud Functions: (needs Node env & `firebase-tools`)
+
+```pwsh
+cd functions
+npm install
+firebase deploy --only functions
+```
+
+3. From the Firebase Admin console or via cloud function `setCustomClaims`, mark the first user as `admin` and call `authService.setRole(uid, 'admin')` from a safe backend path.
+
+4. In Firestore rules, secure the collections like `users`, `rides`, and `payments` with role checks.
+
+For more best practices (2FA, session management, auditing, logging), put these behind server-side enforcement and not only client-side checks.
