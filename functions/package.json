@@ -2,7 +2,7 @@
   "name": "functions",
   "type": "commonjs",
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "dependencies": {
     "firebase-admin": "^11.10.0",
